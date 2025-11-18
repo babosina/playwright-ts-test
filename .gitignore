@@ -1,6 +1,7 @@
 .auth
 .env
 .idea
+auth
 
 /allure-report
 /allure-results
