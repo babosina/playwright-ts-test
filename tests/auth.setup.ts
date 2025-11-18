@@ -1,10 +1,10 @@
 import {test as setup, request} from '@playwright/test';
 // @ts-ignore
-import user from "../auth/user.json";
+import user from "../.auth/user.json";
 // @ts-ignore
 import fs from 'fs';
 
-const authFile = "./auth/user.json";
+const authFile = ".auth/user.json";
 
 setup("authentication", async ({page, request}) => {
     // await page.goto("https://conduit.bondaracademy.com/");

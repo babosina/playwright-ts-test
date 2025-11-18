@@ -58,7 +58,7 @@ export default defineConfig<TestOptions>({
             testIgnore: "likesCount.spec.ts",
             use: {
                 ...devices['Desktop Chrome'],
-                storageState: "./auth/user.json",
+                storageState: ".auth/user.json",
                 baseURL: process.env.BASE_URL || "http://localhost:4200"
             },
             dependencies: ["setup"]
@@ -92,7 +92,7 @@ export default defineConfig<TestOptions>({
             testMatch: "likesCount.spec.ts",
             use: {
                 ...devices["Desktop Chrome"],
-                storageState: "./auth/user.json"
+                storageState: ".auth/user.json"
             },
             dependencies: ["articleSetup"]
         },
