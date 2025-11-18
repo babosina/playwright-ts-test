@@ -1,0 +1,32 @@
+services:
+  app:
+    image: pw-practice-app-pw-practice-app
+    container_name: app
+    ports:
+      - "4200:4200"
+  #    healthcheck:
+  #      test: [ "CMD", "curl", "-f", "http://localhost:4200" ]
+  #      interval: 1m
+  #      timeout: 30s
+  #      retries: 2
+  #      start_period: 1m
+
+  test:
+    image: pw-ui-test
+    container_name: test
+    depends_on:
+      - app
+    #        condition: service_healthy
+    environment:
+      - BASE_URL=http://localhost:4200
+    command: [ "/bin/sh", "-c", "
+          until curl -sSf http://app:4200/ > /dev/null; do
+            echo 'Waiting for app...';
+            sleep 3;
+          done;
+          echo 'App is up, starting tests';
+          npm run pageObjects
+        " ]
+    volumes:
+      - ./playwright-report:/app/playwright-report
+      - ./test-results:/app/test-results
