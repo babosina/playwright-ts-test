@@ -55,13 +55,18 @@ export default defineConfig<TestOptions>({
     projects: [
         {
             name: 'regression',
-            testIgnore: "likesCount.spec.ts",
+            testIgnore: [
+                "likesCount.spec.ts",
+                "workingWithAPI.spec.ts",
+                "likeCounterGlobal.spec.ts"
+            ],
             use: {
                 ...devices['Desktop Chrome'],
-                storageState: ".auth/user.json",
-                baseURL: process.env.BASE_URL || "http://localhost:4200"
+                // storageState: ".auth/user.json",
+                baseURL: process.env.BASE_URL || "http://localhost:4200",
+                screenshot: "only-on-failure"
             },
-            dependencies: ["setup"]
+            // dependencies: ["setup"]
         },
         {
             name: "setup",
@@ -99,7 +104,7 @@ export default defineConfig<TestOptions>({
         {
             name: "likeCounterGlobal",
             testMatch: "likeCounterGlobal.spec.ts",
-            use: {...devices["Desktop Chrome"], storageState: "./auth/user.json"}
+            use: {...devices["Desktop Chrome"], storageState: ".auth/user.json"}
         },
         {
             name: "mobile",
